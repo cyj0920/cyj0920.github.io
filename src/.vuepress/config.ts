@@ -6,8 +6,8 @@ export default defineUserConfig({
   base: "/",
 
   lang: "zh-CN",
-  title: "Kyle's Blog",
-  description: "个人技术博客",
+  title: "Yujie's Blog",
+  description: "记录学习与成长的技术博客",
 
   theme,
 

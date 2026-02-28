@@ -1,6 +1,6 @@
 ---
 home: true
-heroText: Kyle's Blog
+heroText: Yujie's Blog
 tagline: 记录学习与成长
 heroImage: /logo.jpg
 heroImageStyle:
@@ -14,9 +14,9 @@ actions:
   - { text: 开始阅读, icon: book, link: /blog/ }
   - { text: 关于我, icon: user, link: /intro.html }
 features:
-  - { title: 技术笔记, icon: code, details: 记录编程学习过程中的点点滴滴 }
-  - { title: 项目经验, icon: project, details: 分享项目开发中遇到的问题和解决方案 }
-  - { title: 生活随笔, icon: pen, details: 记录生活中的感悟与思考 }
+  - { title: 💻 代码实践, details: 记录编程学习过程中的探索与成长 }
+  - { title: 🚀 技术分享, details: 分享项目开发中的经验与解决方案 }
+  - { title: 📝 生活随笔, details: 记录生活中的点滴感悟与思考 }
 footer: false
 ---
 

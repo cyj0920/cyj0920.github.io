@@ -7,7 +7,7 @@ export default hopeTheme({
   hostname: "https://cyj0920.github.io",
 
   author: {
-    name: "Kyle",
+    name: "Yujie",
     url: "https://cyj0920.github.io/",
   },
 
@@ -29,10 +29,10 @@ export default hopeTheme({
 
   // 博客相关
   blog: {
-    description: "技术爱好者",
+    description: "热爱技术，热爱生活",
     intro: "/intro.html",
     medias: {
-      Email: "your-email@example.com",
+      Email: "mailto:cyjie0920@gmail.com",
       GitHub: "https://github.com/cyj0920",
     },
   },
