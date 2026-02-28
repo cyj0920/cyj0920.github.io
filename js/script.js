@@ -1,17 +1,57 @@
 /**
  * Kyle's Blog JavaScript
- * Features: Search, Share, TOC, Back to Top, Code Copy, Mobile Nav, Fancybox
+ * VuePress Theme Hope Style
  */
 
 (function($) {
   'use strict';
 
   // ============================================
+  // Theme Toggle (Dark Mode Support)
+  // ============================================
+  function initTheme() {
+    // Check for saved theme preference or system preference
+    const savedTheme = localStorage.getItem('theme');
+    const systemDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+    
+    if (savedTheme === 'dark' || (!savedTheme && systemDark)) {
+      document.documentElement.setAttribute('data-theme', 'dark');
+    }
+    
+    // Listen for system theme changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', function(e) {
+      if (!localStorage.getItem('theme')) {
+        document.documentElement.setAttribute('data-theme', e.matches ? 'dark' : 'light');
+      }
+    });
+  }
+  
+  function toggleTheme() {
+    const html = document.documentElement;
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+    
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+  }
+  
+  // Initialize theme immediately
+  initTheme();
+  
+  // Bind toggle button
+  $(document).ready(function() {
+    $('#theme-toggle').on('click', function(e) {
+      e.preventDefault();
+      toggleTheme();
+    });
+  });
+
+  // ============================================
   // Search Functionality
   // ============================================
   var $searchWrap = $('#search-form-wrap');
   var isSearchAnim = false;
-  var searchAnimDuration = 200;
+  var searchAnimDuration = 300;
 
   var startSearchAnim = function() {
     isSearchAnim = true;
@@ -43,8 +83,10 @@
 
   // Close search on Escape key
   $(document).on('keydown', function(e) {
-    if (e.key === 'Escape' && $searchWrap.hasClass('on')) {
-      $searchWrap.removeClass('on');
+    if (e.key === 'Escape') {
+      if ($searchWrap.hasClass('on')) {
+        $searchWrap.removeClass('on');
+      }
     }
   });
 
@@ -312,7 +354,7 @@
   // ============================================
   var $container = $('#container');
   var isMobileNavAnim = false;
-  var mobileNavAnimDuration = 200;
+  var mobileNavAnimDuration = 300;
 
   var startMobileNavAnim = function() {
     isMobileNavAnim = true;
