@@ -2,195 +2,158 @@
 <html>
 <head>
   <meta charset="utf-8">
-  
-  
-  <title>Hexo</title>
+  <title>调试笔记 | Kyle's Blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="![[Pasted image 20230630132251.png]] Access Port  等于 AP 接入端口。 ![[Pasted image 20230630133023.png]] ETM： 嵌入式跟踪宏 Embedded Trace Macro   TPIU：跟踪端口接口单元  Trace Port Interface UnitDWT：数据观察点和追踪   Data Watchp">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://example.com/2023/12/13/hello-world/index.html">
-<meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="![[Pasted image 20230630132251.png]] Access Port  等于 AP 接入端口。 ![[Pasted image 20230630133023.png]] ETM： 嵌入式跟踪宏 Embedded Trace Macro   TPIU：跟踪端口接口单元  Trace Port Interface UnitDWT：数据观察点和追踪   Data Watchp">
-<meta property="og:locale" content="en_US">
-<meta property="article:published_time" content="2023-12-13T09:00:09.060Z">
-<meta property="article:modified_time" content="2023-12-13T09:47:09.220Z">
-<meta property="article:author" content="John Doe">
-<meta name="twitter:card" content="summary">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="调试笔记">
+  <meta property="og:url" content="https://cyj0920.github.io/2023/12/13/hello-world/">
+  <meta property="og:site_name" content="Kyle's Blog">
+  <meta property="og:locale" content="zh_CN">
+  <meta property="article:published_time" content="2023-12-13T09:00:09.060Z">
+  <meta property="article:author" content="Kyle">
+  <meta name="twitter:card" content="summary">
   
-    <link rel="alternate" href="/atom.xml" title="Hexo" type="application/atom+xml">
-  
-  
-    <link rel="shortcut icon" href="/favicon.png">
-  
-  
-  
-<link rel="stylesheet" href="/css/style.css">
-
-  
-    
-<link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
-
-  
-  
-<meta name="generator" content="Hexo 7.0.0"></head>
+  <link rel="alternate" href="/atom.xml" title="Kyle's Blog" type="application/atom+xml">
+  <link rel="shortcut icon" href="/favicon.png">
+  <link rel="stylesheet" href="/css/style.css">
+  <link rel="stylesheet" href="/fancybox/jquery.fancybox.min.css">
+  <meta name="generator" content="Hexo 7.0.0">
+</head>
 
 <body>
   <div id="container">
+    <!-- Fixed Header -->
+    <header id="header">
+      <div id="header-outer" class="outer">
+        <div id="header-title">
+          <h1 id="logo-wrap">
+            <a href="/" id="logo">Kyle's Blog</a>
+          </h1>
+        </div>
+        <div id="header-inner">
+          <nav id="main-nav">
+            <a id="main-nav-toggle" class="nav-icon" href="#"><span class="fa fa-bars"></span></a>
+            <a class="main-nav-link" href="/">Home</a>
+            <a class="main-nav-link" href="/archives">Archives</a>
+          </nav>
+          <nav id="sub-nav">
+            <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
+            <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
+          </nav>
+          <div id="search-form-wrap">
+            <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form">
+              <input type="search" name="q" class="search-form-input" placeholder="Search">
+              <button type="submit" class="search-form-submit">Search</button>
+              <input type="hidden" name="sitesearch" value="cyj0920.github.io">
+            </form>
+          </div>
+        </div>
+      </div>
+    </header>
+
     <div id="wrap">
-      <header id="header">
-  <div id="banner"></div>
-  <div id="header-outer" class="outer">
-    <div id="header-title" class="inner">
-      <h1 id="logo-wrap">
-        <a href="/" id="logo">Hexo</a>
-      </h1>
-      
-    </div>
-    <div id="header-inner" class="inner">
-      <nav id="main-nav">
-        <a id="main-nav-toggle" class="nav-icon"><span class="fa fa-bars"></span></a>
-        
-          <a class="main-nav-link" href="/">Home</a>
-        
-          <a class="main-nav-link" href="/archives">Archives</a>
-        
-      </nav>
-      <nav id="sub-nav">
-        
-        
-          <a class="nav-icon" href="/atom.xml" title="RSS Feed"><span class="fa fa-rss"></span></a>
-        
-        <a class="nav-icon nav-search-btn" title="Search"><span class="fa fa-search"></span></a>
-      </nav>
-      <div id="search-form-wrap">
-        <form action="//google.com/search" method="get" accept-charset="UTF-8" class="search-form"><input type="search" name="q" class="search-form-input" placeholder="Search"><button type="submit" class="search-form-submit">&#xF002;</button><input type="hidden" name="sitesearch" value="http://example.com"></form>
+      <div class="outer main-content">
+        <!-- Sidebar (左侧) -->
+        <aside id="sidebar">
+          <div class="widget-wrap">
+            <h3 class="widget-title">About</h3>
+            <div class="widget">
+              <p style="color: var(--color-text-secondary); font-size: 0.9rem;">
+                欢迎来到我的博客，这里记录着我的学习与思考。
+              </p>
+            </div>
+          </div>
+          
+          <div class="widget-wrap">
+            <h3 class="widget-title">Archives</h3>
+            <div class="widget">
+              <ul class="archive-list">
+                <li class="archive-list-item">
+                  <a class="archive-list-link" href="/archives/2023/12/">
+                    December 2023
+                    <span class="archive-list-count">1</span>
+                  </a>
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="widget-wrap">
+            <h3 class="widget-title">Recent Posts</h3>
+            <div class="widget">
+              <ul>
+                <li>
+                  <a href="/2023/12/13/hello-world/">调试笔记</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </aside>
+
+        <!-- Main Content (右侧) -->
+        <section id="main">
+          <article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
+            <div class="article-meta">
+              <a href="/2023/12/13/hello-world/" class="article-date">
+                <time class="dt-published" datetime="2023-12-13T09:00:09.060Z" itemprop="datePublished">2023-12-13</time>
+              </a>
+            </div>
+            <div class="article-inner">
+              <div class="e-content article-entry" itemprop="articleBody">
+                <h2 id="调试器概述">调试器概述</h2>
+                <p>Access Port 等于 AP 接入端口。</p>
+                
+                <h2 id="调试组件">调试组件</h2>
+                <p>ETM：嵌入式跟踪宏 Embedded Trace Macro</p>
+                <p>TPIU：跟踪端口接口单元 Trace Port Interface Unit</p>
+                <p>DWT：数据观察点和追踪 Data Watchpoint and Trace</p>
+                <p>FTB：Flash 补丁和断点 Flash Patch and Breakpoint</p>
+                <p>ITM：仪器跟踪宏单元 Instrumentation Trace Macrocell</p>
+                
+                <h2 id="调试器列表">调试器列表</h2>
+                <p>关键是集成几个调试器？板载还是外接？</p>
+                <ul>
+                  <li>Luaterbach：JTAG接口</li>
+                  <li>UDE：JTAG接口</li>
+                  <li>I-JET：JTAG SWD</li>
+                  <li>JLINK：JTAG SWD</li>
+                  <li>CMSIS DAP：JTAG SWD</li>
+                </ul>
+                
+                <h2 id="参考链接">参考链接</h2>
+                <ul>
+                  <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48120109/article/details/126167331">ARM Cortex-M上的Trace跟踪方案</a></li>
+                  <li><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42967006/article/details/121492113">英飞凌 AURIX 系列单片机的HSM详解</a></li>
+                </ul>
+              </div>
+              <footer class="article-footer">
+                <a data-url="https://cyj0920.github.io/2023/12/13/hello-world/" data-id="clq3l82zk0000zbeb88ubfi6l" data-title="调试笔记" class="article-share-link">
+                  <span class="fa fa-share"></span> Share
+                </a>
+              </footer>
+            </div>
+          </article>
+        </section>
       </div>
-    </div>
-  </div>
-</header>
 
-      <div class="outer">
-        <section id="main"><article id="post-hello-world" class="h-entry article article-type-post" itemprop="blogPost" itemscope itemtype="https://schema.org/BlogPosting">
-  <div class="article-meta">
-    <a href="/2023/12/13/hello-world/" class="article-date">
-  <time class="dt-published" datetime="2023-12-13T09:00:09.060Z" itemprop="datePublished">2023-12-13</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="e-content article-entry" itemprop="articleBody">
-      
-        <p>![[Pasted image 20230630132251.png]]</p>
-<p>Access Port  等于 AP 接入端口。</p>
-<p>![[Pasted image 20230630133023.png]]</p>
-<p>ETM： 嵌入式跟踪宏 Embedded Trace Macro  </p>
-<p>TPIU：跟踪端口接口单元  Trace Port Interface Unit<br>DWT：数据观察点和追踪   Data Watchpoint and Trace<br>学习资料见：<a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_48120109/article/details/126167331">(266条消息) ARM® Cortex®-M上的Trace跟踪方案_arm trace_Rainmicro的博客-CSDN博客</a></p>
-<p><a target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42967006/article/details/121492113">(266条消息) 英飞凌 AURIX 系列单片机的HSM详解（1）——何为HSM_olddddd的博客-CSDN博客</a></p>
-<p>FTB ： Flash 补丁和断点  Flash Patch and Breakpoint<br>ITM：  仪器跟踪宏单元   Instrumentation Trace Macrocell  </p>
-<p>关键是集成几个调试器件？<br>![[Pasted image 20230630140243.png]]</p>
-<p>上述的安排显示，需要支持6类调试器？板载还是外接？</p>
-<p>Luaterbach：JTTAG接口</p>
-<p>UDE ： JTAG接口</p>
-<p>I-JET ； JTAG SWD</p>
-<p>JLINK   JTAG SWD</p>
-<p>CMSIS DAP   JTAG SWD</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://example.com/2023/12/13/hello-world/" data-id="clq3l82zk0000zbeb88ubfi6l" data-title="" class="article-share-link"><span class="fa fa-share">Share</span></a>
-      
-      
-      
-    </footer>
-  </div>
-  
-    
-  
-</article>
-
-
-</section>
-        
-          <aside id="sidebar">
-  
-    
-
-  
-    
-
-  
-    
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Archives</h3>
-    <div class="widget">
-      <ul class="archive-list"><li class="archive-list-item"><a class="archive-list-link" href="/archives/2023/12/">December 2023</a></li></ul>
-    </div>
-  </div>
-
-
-  
-    
-  <div class="widget-wrap">
-    <h3 class="widget-title">Recent Posts</h3>
-    <div class="widget">
-      <ul>
-        
-          <li>
-            <a href="/2023/12/13/hello-world/">(no title)</a>
-          </li>
-        
-      </ul>
-    </div>
-  </div>
-
-  
-</aside>
-        
-      </div>
       <footer id="footer">
-  
-  <div class="outer">
-    <div id="footer-info" class="inner">
-      
-      &copy; 2023 John Doe<br>
-      Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+        <div class="outer">
+          <div id="footer-info" class="inner">
+            &copy; 2024 Kyle<br>
+            Powered by <a href="https://hexo.io/" target="_blank">Hexo</a>
+          </div>
+        </div>
+      </footer>
     </div>
-  </div>
-</footer>
 
-    </div>
     <nav id="mobile-nav">
-  
-    <a href="/" class="mobile-nav-link">Home</a>
-  
-    <a href="/archives" class="mobile-nav-link">Archives</a>
-  
-</nav>
-    
-
-
-<script src="/js/jquery-3.6.4.min.js"></script>
-
-
-
-  
-<script src="/fancybox/jquery.fancybox.min.js"></script>
-
-
-
-
-<script src="/js/script.js"></script>
-
-
-
-
-
+      <a href="/" class="mobile-nav-link">Home</a>
+      <a href="/archives" class="mobile-nav-link">Archives</a>
+    </nav>
   </div>
+
+  <script src="/js/jquery-3.6.4.min.js"></script>
+  <script src="/fancybox/jquery.fancybox.min.js"></script>
+  <script src="/js/script.js"></script>
 </body>
 </html>

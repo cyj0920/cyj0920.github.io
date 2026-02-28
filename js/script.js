@@ -1,5 +1,5 @@
 /**
- * Modern Blog Theme JavaScript
+ * Kyle's Blog JavaScript
  * Features: Search, Share, TOC, Back to Top, Code Copy, Mobile Nav, Fancybox
  */
 
@@ -24,7 +24,8 @@
     }, searchAnimDuration);
   };
 
-  $('.nav-search-btn').on('click', function() {
+  $('.nav-search-btn').on('click', function(e) {
+    e.preventDefault();
     if (isSearchAnim) return;
     startSearchAnim();
     $searchWrap.addClass('on');
@@ -33,15 +34,16 @@
     });
   });
 
-  $('.search-form-input').on('blur', function() {
-    startSearchAnim();
-    $searchWrap.removeClass('on');
-    stopSearchAnim();
-  });
-
   // Close search on background click
   $searchWrap.on('click', function(e) {
     if (e.target === this) {
+      $searchWrap.removeClass('on');
+    }
+  });
+
+  // Close search on Escape key
+  $(document).on('keydown', function(e) {
+    if (e.key === 'Escape' && $searchWrap.hasClass('on')) {
       $searchWrap.removeClass('on');
     }
   });
@@ -76,7 +78,6 @@
             '<div class="article-share-links">',
               '<a href="https://twitter.com/intent/tweet?text=' + encodeURIComponent(title) + '&url=' + encodedUrl + '" class="article-share-twitter" target="_blank" title="Twitter"><span class="fa fa-twitter"></span></a>',
               '<a href="https://www.facebook.com/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"><span class="fa fa-facebook"></span></a>',
-              '<a href="http://pinterest.com/pin/create/button/?url=' + encodedUrl + '" class="article-share-pinterest" target="_blank" title="Pinterest"><span class="fa fa-pinterest"></span></a>',
               '<a href="https://www.linkedin.com/shareArticle?mini=true&url=' + encodedUrl + '" class="article-share-linkedin" target="_blank" title="LinkedIn"><span class="fa fa-linkedin"></span></a>',
             '</div>',
           '</div>'
@@ -108,9 +109,8 @@
     if (!$article.length) return;
 
     var $headings = $article.find('h2, h3');
-    if ($headings.length < 2) return; // Don't show TOC for short articles
+    if ($headings.length < 2) return;
 
-    // Generate TOC HTML
     var tocHtml = '<div id="toc-wrap"><div id="toc-title">目录</div><ul id="toc">';
     var headingCount = 0;
 
@@ -120,36 +120,32 @@
       var text = $heading.text();
       var id = 'heading-' + headingCount++;
 
-      // Add ID to heading
       $heading.attr('id', id);
-
-      // Add to TOC
       tocHtml += '<li class="toc-level-' + level + '"><a href="#' + id + '" data-target="#' + id + '">' + text + '</a></li>';
     });
 
     tocHtml += '</ul></div>';
     $('body').append(tocHtml);
 
-    // Show TOC
     setTimeout(function() {
       $('#toc-wrap').addClass('visible');
     }, 100);
 
-    // Smooth scroll when clicking TOC links
+    // Smooth scroll
     $('#toc').on('click', 'a', function(e) {
       e.preventDefault();
       var target = $(this).attr('href');
       var $target = $(target);
       
       if ($target.length) {
-        var offset = $target.offset().top - 20;
+        var offset = $target.offset().top - 80;
         $('html, body').animate({
           scrollTop: offset
         }, 400);
       }
     });
 
-    // Highlight current section on scroll
+    // Highlight current section
     var headingPositions = [];
     
     function updateHeadingPositions() {
@@ -180,10 +176,8 @@
       }
     }
 
-    // Initial calculation
     updateHeadingPositions();
 
-    // Update on scroll with throttling
     var ticking = false;
     $(window).on('scroll.toc', function() {
       if (!ticking) {
@@ -195,14 +189,12 @@
       }
     });
 
-    // Recalculate positions on resize
     $(window).on('resize.toc', function() {
       updateHeadingPositions();
       highlightCurrentHeading();
     });
   }
 
-  // Initialize TOC on article pages
   if ($('.article-entry').length && $('.article-entry h2, .article-entry h3').length >= 2) {
     generateTOC();
   }
@@ -223,7 +215,6 @@
       }
     };
 
-    // Throttled scroll handler
     var ticking = false;
     $(window).on('scroll.backtotop', function() {
       if (!ticking) {
@@ -235,7 +226,6 @@
       }
     });
 
-    // Click handler
     $btn.on('click', function() {
       $('html, body').animate({
         scrollTop: 0
@@ -256,7 +246,6 @@
       $btn.on('click', function() {
         var code = $pre.find('code').text() || $pre.text();
         
-        // Copy to clipboard
         if (navigator.clipboard) {
           navigator.clipboard.writeText(code).then(function() {
             $btn.text('已复制!');
@@ -270,7 +259,6 @@
             }, 2000);
           });
         } else {
-          // Fallback for older browsers
           var $textarea = $('<textarea>').val(code).appendTo('body').select();
           try {
             document.execCommand('copy');
@@ -336,16 +324,12 @@
     }, mobileNavAnimDuration);
   };
 
-  $('#main-nav-toggle').on('click', function() {
+  $('#main-nav-toggle').on('click', function(e) {
+    e.preventDefault();
     if (isMobileNavAnim) return;
     startMobileNavAnim();
     $container.toggleClass('mobile-nav-on');
     stopMobileNavAnim();
-  });
-
-  $('#wrap').on('click', function() {
-    if (isMobileNavAnim || !$container.hasClass('mobile-nav-on')) return;
-    $container.removeClass('mobile-nav-on');
   });
 
   // Close mobile nav when clicking on overlay
@@ -353,6 +337,11 @@
     if ($container.hasClass('mobile-nav-on') && !$(e.target).closest('#mobile-nav').length && !$(e.target).is('#main-nav-toggle')) {
       $container.removeClass('mobile-nav-on');
     }
+  });
+
+  // Close mobile nav when clicking a link
+  $('#mobile-nav a').on('click', function() {
+    $container.removeClass('mobile-nav-on');
   });
 
   // ============================================
@@ -382,7 +371,6 @@
   // Initialize
   // ============================================
   $(document).ready(function() {
-    // Add loaded class for any CSS animations
     $('body').addClass('loaded');
   });
 
