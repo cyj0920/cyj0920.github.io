@@ -9,7 +9,7 @@ icon: circle-info
 ## 联系方式
 
 - GitHub: [cyj0920](https://github.com/cyj0920)
-- Email: your-email@example.com
+- Email: cyjie0920@gmail.com
 
 ## 兴趣领域
 
